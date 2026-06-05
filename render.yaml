@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: vidgrab
+    runtime: python
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: export PATH=$HOME/bin:$PATH && gunicorn --bind 0.0.0.0:$PORT --timeout 300 --workers 2 app:app
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
